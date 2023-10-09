@@ -1,4 +1,4 @@
-# Changelog for helloworld
+# Changelog for `helloworld`
 
 All notable changes to this project will be documented in this file.
 
