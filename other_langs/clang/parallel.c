@@ -20,6 +20,7 @@ int is_prime(int n) {
 
 int main() {
     int arr[1000001];
+    int primes = 0;
     {
         unsigned int i = 0;
         for (i = 0; i < sizeof(arr) / sizeof(int); i++) {
@@ -31,24 +32,16 @@ int main() {
     printf("PROC: %d\n", omp_get_num_procs());
 #endif
 
-    {
+    { /* primesが競合して解が非決定的になる */
         unsigned int i = 0;
 #ifdef _OPENMP
 #pragma omp parallel for
 #endif
         for (i = 2; i < sizeof(arr) / sizeof(int); i++) {
-            arr[i] = is_prime(arr[i]);
+            primes += is_prime(arr[i]);
         }
     }
-
-    {
-        int primes = 0;
-        unsigned int i = 0;
-        for (i = 2; i < sizeof(arr) / sizeof(int); i++) {
-            primes += arr[i];
-        }
-        printf("primes: %d\n", primes);
-    }
+    printf("primes: %d\n", primes);
 
     return 0;
 }
