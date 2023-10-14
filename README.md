@@ -21,3 +21,9 @@ stack build --resolver ghc-9.6.3
 - `stack path`
 - `stack exec`
 - `stack exec env`
+
+## Style guide
+
+- https://wiki.haskell.org/Programming_guidelines
+- https://kowainik.github.io/posts/2019-02-06-style-guide
+- https://github.com/tibbe/haskell-style-guide/blob/master/haskell-style.md
