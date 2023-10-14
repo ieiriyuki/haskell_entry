@@ -35,13 +35,13 @@ int main() {
     { /* primesが競合して解が非決定的になる */
         unsigned int i = 0;
 #ifdef _OPENMP
-#pragma omp parallel for
+#pragma omp parallel for reduction(+:primes)
 #endif
         for (i = 2; i < sizeof(arr) / sizeof(int); i++) {
             primes += is_prime(arr[i]);
         }
     }
-    printf("primes: %d\n", primes);
+    printf("primes: %d\n", primes); /* 78498 */
 
     return 0;
 }
