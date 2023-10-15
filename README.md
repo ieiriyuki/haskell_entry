@@ -27,3 +27,12 @@ stack build --resolver ghc-9.6.3
 - https://wiki.haskell.org/Programming_guidelines
 - https://kowainik.github.io/posts/2019-02-06-style-guide
 - https://github.com/tibbe/haskell-style-guide/blob/master/haskell-style.md
+
+## Features of Haskell
+
+- 開発効率が良い
+  - 本質以外の記述が少ない
+- バグが少ない
+  - 安全を破らせないような設計ができる
+- 並行並列処理に強い
+  - 純粋である
