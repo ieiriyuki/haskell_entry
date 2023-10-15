@@ -1,3 +1,4 @@
+-- 1.4 structured data
 -- stack ghc ./app/VisitorIsTooLarge.hs
 -- ./app/VisitorIsTooLarge
 

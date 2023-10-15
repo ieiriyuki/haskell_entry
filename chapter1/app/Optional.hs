@@ -1,3 +1,4 @@
+-- 1.2 handling failures
 -- stack ghc Optional.hs
 -- echo "1 + 1" | ./Optional
 

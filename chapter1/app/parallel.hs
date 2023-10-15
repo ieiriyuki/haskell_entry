@@ -1,3 +1,4 @@
+-- 1.3 parallelism
 -- stack setup --install-ghc
 -- stack install parallel
 -- stack ghc ./app/parallel.hs
