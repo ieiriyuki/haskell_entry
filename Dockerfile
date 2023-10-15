@@ -1,4 +1,4 @@
-FROM haskell
+FROM haskell:slim
 
 WORKDIR /app
 
