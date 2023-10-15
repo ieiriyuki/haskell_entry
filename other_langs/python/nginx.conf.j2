@@ -1,0 +1,8 @@
+http {
+    server {
+        listen {{ addr }};
+        location {{ path }} {
+            index {{ file }};
+        }
+    }
+}
