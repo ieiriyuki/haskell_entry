@@ -130,3 +130,32 @@ convert :: C -> K
 :}
 > data Tree a = Leaf a | Fork (a, (Tree a, Tree a)) -- のようにも書ける
 ```
+
+## 型クラス
+
+ある型が何らかの性質を持つことを示すインターフェース
+
+```haskell
+> show :: Show a ==> a -> String
+--        ^^^^^^ 型クラス制約あるいは context
+-- => a に対して, 型上での制約を記載する
+
+> :i Show
+type Show :: * -> Constraint
+class Show a where
+  showsPrec :: Int -> a -> ShowS
+  show :: a -> String
+  showList :: [a] -> ShowS
+  {-# MINIMAL showsPrec | show #-}
+        -- Defined in ‘GHC.Show’
+instance (Show a, Show b) => Show (Either a b)
+
+> show (\x -> x) -- エラーになる
+
+> ['A'..'Z'] -- レンジ
+```
+
+`Show`, `Read`, `Num`, `Fractional`, `Floating`, `Integral`, `Eq`, `Ord`, `Enum`, `Bounded`
+
+`Typeable`: 自身の型の表現を取り出せる
+
