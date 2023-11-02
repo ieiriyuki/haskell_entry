@@ -98,3 +98,38 @@ caseOfFirstLetter (x:xs)
     | 'A' <= x && x <= 'Z' = "upper"
     | otherwise            = "other"
 ```
+
+### case / if
+
+```haskell
+case expr of
+    pattern1 -> expr1
+    pattern2 -> expr2
+
+if cond then exprTrue else exprFalse
+```
+
+場合分けは全て case の syntax sugar
+
+### where / let
+
+一時的な名前の束縛
+
+```haskell
+let temp1 = expr1
+    temp2 = expr2
+in expr
+
+func = def where -- 宣言全体で使える
+    tempFunc1 = def1
+    tempFunc2 = def2
+
+caseOfFirstLetter :: String -> String
+caseOfFirstLetter "" = "empty"
+caseofFirstLetter (x:xs)
+    | inRange 'a' 'z' = "lower"
+    | inRange 'A' 'Z' = "upper"
+    | otherwise       = "other"
+    where
+        inRange lower upper = lower <= x && x <= upper
+```
