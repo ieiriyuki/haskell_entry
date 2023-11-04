@@ -157,3 +157,40 @@ insSort :: Ord a => [a] -> [a]
 insSort []     = []
 insSort (x:xs) = ins x (insSort xs)
 ```
+
+## 高階関数
+
+```haskell
+-- イメージ
+func :: type -> ... -> (type -> type) -> ... -> type`
+
+each :: (a -> b) -> (c -> d) -> (a, c) -> (b, d)
+each f g (x, y) = (f x, g y)
+
+> :t filter
+filter :: (a -> Bool) -> [a] -> [a]
+> filter (< 3) [4,2,3,5,1]
+
+> :t map
+map :: (a -> b) -> [a] -> [b]
+> map show [1,4,6,9]
+
+> :t zip
+zip :: [a] -> [b] -> [(a, b)]
+> :t zipWith
+zipWith :: (a -> b -> c) -> [a] -> [b] -> [c]
+> zipWith (+) [1,2] [3,4,5]
+
+> :t foldl
+foldl :: Foldable t => (b -> a -> b) -> b -> t a -> b
+
+> :t foldr
+foldr :: Foldable t => (a -> b -> b) -> b -> t a -> b
+> foldr (+) 1 [1,2,3]
+
+> :t scanr
+scanr :: (a -> b -> b) -> b -> [a] -> [b]
+> :t scanl
+scanl :: (b -> a -> b) -> b -> [a] -> [b]
+> scanr (\a b -> a + 10 * b) 4 [1,2,3]
+```
