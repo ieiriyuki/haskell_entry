@@ -64,7 +64,98 @@ length :: Foldable t => t a -> Int
 -- t: Foldable な t
 -- a: t の中身
 
--- タプル
--- Either
+-- タプル: 要素数は2で固定, 直積といえる
+(1, "a")
+(1 :: Int, 2 :: Double)
+(True, "bar") :: (Bool, [Char])
+fst (1, 2) -- function
+snd (1, 2)
+
+-- Either, 直和といえる
+> Right "1" :: Either Int String
+Right "1"
+
 -- Maybe
+> Just "a"
+> Nothing
+> import Data.Maybe
+> : isJust
+isJust :: Maybe a -> Bool
+> isJust (Just 1)
+True
+> isJust (Nothing)
+False
+
+-- 型推論できる
 ```
+
+## 型定義
+```haskell
+> type K = Double
+> let convert = \c -> c + 273.15 :: Double
+> :t convert
+convert :: Double -> Double
+> let convert :: C -> K; convert = \c -> c + 273.15 :: Double
+convert :: C -> K
+
+> newtype K = K Double -- 型名, 型コンストラクタ, 内部型
+> let convert = \(C x) -> K (x + 273.15)
+
+-- 完全に新しい型, algebraic data type
+> data [newtype] [type var] ... = constructor1 [type] ...
+                                | constructor2 [type] ...
+> :{
+    data HTTPStatus = OK
+                    | Found
+                    | NotFound
+                    | ServiceUnavailable
+:}
+-- constructor { field :: type, field2 :: type}
+> data RGBA = RGBA { getR :: Float
+                   , getG :: Float
+                   , getB :: Float
+                   , getA :: Float }
+
+-- polymorphic type
+> data Coord a = Coord { getX :: a, getY :: a }
+-- recursive type
+> data Nat = Zero | Succ Nat
+-- 二分木
+> :{
+    data Tree a = Leaf { element :: a }
+                | Fork { element :: a
+                       , left :: Tree a
+                       , right :: Tree a
+                       }
+:}
+> data Tree a = Leaf a | Fork (a, (Tree a, Tree a)) -- のようにも書ける
+```
+
+## 型クラス
+
+ある型が何らかの性質を持つことを示すインターフェース
+
+```haskell
+> show :: Show a ==> a -> String
+--        ^^^^^^ 型クラス制約あるいは context
+-- => a に対して, 型上での制約を記載する
+
+> :i Show
+type Show :: * -> Constraint
+class Show a where
+  showsPrec :: Int -> a -> ShowS
+  show :: a -> String
+  showList :: [a] -> ShowS
+  {-# MINIMAL showsPrec | show #-}
+        -- Defined in ‘GHC.Show’
+instance (Show a, Show b) => Show (Either a b)
+
+> show (\x -> x) -- エラーになる
+
+> ['A'..'Z'] -- レンジ
+```
+
+`Show`, `Read`, `Num`, `Fractional`, `Floating`, `Integral`, `Eq`, `Ord`, `Enum`, `Bounded`
+
+`Typeable`: 自身の型の表現を取り出せる
+
