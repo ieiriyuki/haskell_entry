@@ -14,6 +14,7 @@ extra-source-files:
 executable chapter4-exe
   main-is: Main.hs
   other-modules:
+      Lazy
       Paths_chapter4
   autogen-modules:
       Paths_chapter4
