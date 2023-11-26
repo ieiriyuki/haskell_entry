@@ -6,6 +6,7 @@ services:
     container_name: app
     volumes:
       - ./chapter1:/app/chapter1
+      - ./chapter4:/app/chapter4
     stdin_open: true
     tty: true
     command: bash

@@ -3,3 +3,8 @@ services:
   app:
     image: myc
     build: .
+    entrypoint:
+      - "./tarai"
+      - "10"
+      - "5"
+      - "1"
