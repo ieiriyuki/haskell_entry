@@ -7,6 +7,7 @@ services:
     volumes:
       - ./chapter1:/app/chapter1
       - ./chapter4:/app/chapter4
+      - ./chapter5:/app/chapter5
     stdin_open: true
     tty: true
     command: bash
