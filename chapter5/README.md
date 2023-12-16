@@ -153,3 +153,41 @@ class Monoid a where
     mempty :: a
     mappend :: a -> a -> a
 ```
+
+### State
+
+状態の引継ぎ
+
+```haskell
+push :: a -> [a] -> ((), [a])
+push value stack = ((), value : stack)
+
+pop :: [a] -> (a, [a])
+pop (value : stack) = (value, stack)
+
+applyTop :: (a -> a) -> [a] -> ((), [a])
+applyTop f stack = let (a, stack1) = pop stack
+                       (_, stack2) = push (f a) stack1
+                   in ((), stack2)
+-- これくらいならまだいいが、そのうちややこしくなる
+```
+
+```haskell
+newtype State status a = State { runState :: state -> (a, state) }
+
+instance Monad (State state) where
+    return a = State (\s -> (a, s))
+    State x >>= f = State (\s -> let (a, s') = x s in runState (f a) a')
+
+get :: State state state
+get = State (\s -> (s, s))
+
+put :: state -> State state ()
+put s = State (\_ -> ((), s))
+
+modify :: (state -> state) -> State state ()
+modify f = get >>= put . f
+
+gets :: (State -> a) -> State state a
+gets f = get >>= return . f
+```
