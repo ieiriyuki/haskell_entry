@@ -56,3 +56,25 @@ countAll = do
     evens <- countEven
     return (odds + evens)
 
+-- seperate triple
+triple :: Int -> Int
+triple = do
+    n <- id
+    d <- (n+)
+    (d+)
+
+triple :: Int -> Int
+triple = do
+    d <- tripleA
+    tripleB d
+
+tripleA :: Int -> Int
+tripleA = do
+    n <- id
+    (n+)
+
+tripleB :: Int -> Int
+tripleB d = do
+    (d+)
+-- bindで記法すると結合順が変わるように見える
+-- モナド則3で保証している
