@@ -118,6 +118,8 @@ primes = f [2..] where -- comprehension
 
 参照できる環境の共有
 
+DSLや抽象構文木などに対して有用
+
 ```haskell
 newtype Reader env a = Reader { runReader :: env -> a }
 
