@@ -128,3 +128,26 @@ instance Monad (Reader env) where
 ask :: Reader env env
 ask = Reader id
 ```
+
+### Writer
+
+主要な計算の横で、別の値も一直線に合成する
+
+```haskell
+newtype Writer extra a = Writer { runWriter :: (a, extra) }
+
+instance Monad extra => Monad (Writer extra) where
+    return a = Writer (a, mempty)
+    Writer (a, e) >>= f = let (b, e') = runWriter (f a) in Writer (b, e `mappend` e')
+
+tell :: extra -> Writer extra ()
+tell e = Writer ((), e)
+```
+
+`extra` は `Monoid` クラス (0と足し算に相当するような値が定義されている何か)
+
+```haskell
+class Monoid a where
+    mempty :: a
+    mappend :: a -> a -> a
+```
