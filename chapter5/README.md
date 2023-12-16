@@ -52,3 +52,16 @@ m >>= return = m -- returnがbindの右単位元
 (m >>= f) >>= g = m >>= (\x -> f x >>= g) -- bindの結合則
 ```
 
+### do記法
+
+syntax sugar
+
+```haskell
+m >>= f >>= g
+
+do x <- m
+   y <- f x
+   -- let z = x + y -- 新たな変数に束縛できる
+   g y
+```
+
