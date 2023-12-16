@@ -35,3 +35,20 @@ class Eq a where
 - 組み合わせ方があらかじめ設定された計算
 - 型クラスの一つ
 - `((->) r)`: アロー演算子の左に`r`を適用する, モナドの一つ
+
+```haskell
+class Monad m where
+    return :: a -> m a -- provide type a with monad m
+    (>>=)  :: m a -> (a -> m a) -> m b
+    -- bind: combination of actions
+
+action: モナドmの文脈を持つ型を結果に持つ関数
+
+### monad laws
+
+```haskell
+return x >>= f = f x -- returnがbindの左単位元
+m >>= return = m -- returnがbindの右単位元
+(m >>= f) >>= g = m >>= (\x -> f x >>= g) -- bindの結合則
+```
+
