@@ -113,3 +113,18 @@ primes = f [2..] where -- normal
 primes = f [2..] where -- comprehension
     f (p : ns) = p : f [ n | n <- ns, n `mod` p /= 0 ]
 ```
+
+### Reader
+
+参照できる環境の共有
+
+```haskell
+newtype Reader env a = Reader { runReader :: env -> a }
+
+instance Monad (Reader env) where
+    return a = Reader (\e -> a)
+    Reader f >>= g = Reader (\e -> runReader (g (f e)) e)
+
+ask :: Reader env env
+ask = Reader id
+```
