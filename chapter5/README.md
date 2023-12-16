@@ -65,3 +65,50 @@ do x <- m
    g y
 ```
 
+### Identity
+
+何もしない。モナド変換子と組み合わせると便利。
+
+```haskell
+newtype Identity a = Identity { runIdentity :: a }
+
+instance Monad Identity where
+    return Identity
+    Identity x >>= f = f x
+```
+
+### Maybe
+
+失敗するかもしれない文脈
+
+```haskell
+instance Monad Maybe where
+    return Just
+    Just x >>= f = f x
+    Nothing >>= _ = Nothing
+```
+
+### List
+
+複数の可能性を持つ
+
+```haskell
+instance Monad [] where
+    return = (:[])
+    (>>=)  = concatMap
+```
+
+**list comprehension**
+
+`[ expr | elem <- list, cond ]`
+
+`list >>= \elem -> if cond then [expr] else []`
+
+```haskell
+primes:: [Integer]
+primes = f [2..] where -- normal
+    f (p : ns) = p : f (filter ((/= 0) . (`mod` p)) ns)
+
+primes = f [2..] where -- comprehension
+    f (p : ns) = p : f [ n | n <- ns, n `mod` p /= 0 ]
+```
