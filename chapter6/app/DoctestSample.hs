@@ -11,5 +11,8 @@ module DoctestSample where
 -- >>> countSpaces "    "
 -- 4
 --
+-- | fail ;)
+-- prop> countSpaces s == sum [ 1 | c <- s, c == ' ' ]
+--
 countSpaces :: String -> Int
-countSpaces = length . filter (== ' ')
+countSpaces = length . filter (\x -> ' ' == x || '\t' == x)
