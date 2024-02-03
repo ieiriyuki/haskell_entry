@@ -4,8 +4,8 @@ resolver:
 packages:
 - .
 
-extra-deps:
-- doctest
+# extra-deps:
+# - doctest
 
 # Require a specific version of Stack, using version ranges
 # require-stack-version: -any # Default
