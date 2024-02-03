@@ -4,7 +4,4 @@ services:
     image: myc
     build: .
     entrypoint:
-      - "./tarai"
-      - "10"
-      - "5"
-      - "1"
+      - "./toint"
