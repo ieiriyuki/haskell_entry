@@ -20,4 +20,10 @@ rl2str :: (Char, Int) -> String
 rl2str (c, n) = c : show n
 
 toCharAndRunLength :: String -> [(Char, Int)]
-toCharAndRunLength = undefined
+toCharAndRunLength = toPairs . toRLs
+
+toRLs :: String -> [String]
+toRLs = undefined
+
+toPairs :: [String] -> [(Char, Int)]
+toPairs = undefined
