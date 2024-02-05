@@ -14,13 +14,7 @@ rle :: String -> String
 rle = fromCharAndRunLength . toCharAndRunLength
 
 fromCharAndRunLength :: [(Char, Int)] -> String
-fromCharAndRunLength = concat . rls2strs
-
-rls2strs :: [(Char, Int)] -> [String]
-rls2strs = foreach rl2str
-
-foreach :: (a -> b) -> [a] -> [b]
-foreach = undefined
+fromCharAndRunLength = concat . map rl2str
 
 rl2str :: (Char, Int) -> String
 rl2str = undefined
