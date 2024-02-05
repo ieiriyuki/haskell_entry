@@ -11,4 +11,10 @@ import Data.List (group)
 -- >>> rle "AAABBCCCCAAA"
 -- "A3B2C4A3"
 rle :: String -> String
-rle = concatMap (\s -> head s : show (length s)) . group
+rle = fromCharAndRunLength . toCharAndRunLength
+
+fromCharAndRunLength :: [(Char, Int)] -> String
+fromCharAndRunLength = undefined
+
+toCharAndRunLength :: String -> [(Char, Int)]
+toCharAndRunLength = undefined
