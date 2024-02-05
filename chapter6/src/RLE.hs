@@ -17,7 +17,7 @@ fromCharAndRunLength :: [(Char, Int)] -> String
 fromCharAndRunLength = concat . map rl2str
 
 rl2str :: (Char, Int) -> String
-rl2str = undefined
+rl2str (c, n) = c : show n
 
 toCharAndRunLength :: String -> [(Char, Int)]
 toCharAndRunLength = undefined
