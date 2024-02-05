@@ -20,7 +20,7 @@ rl2str :: (Char, Int) -> String
 rl2str (c, n) = c : show n
 
 toCharAndRunLength :: String -> [(Char, Int)]
-toCharAndRunLength = toPairs . group
+toCharAndRunLength = map toPair . group
 
-toPairs :: [String] -> [(Char, Int)]
-toPairs = undefined
+toPair :: String -> (Char, Int)
+toPair = undefined
