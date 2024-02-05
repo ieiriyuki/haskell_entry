@@ -11,7 +11,7 @@ import Data.List (group)
 -- >>> rle "AAABBCCCCAAA"
 -- "A3B2C4A3"
 rle :: String -> String
-rle = concatMap (rl2str . toPair) . group
+rle = concatMap (\s -> rl2str (toPair s)) . group
 
 rl2str :: (Char, Int) -> String
 rl2str (c, n) = c : show n
