@@ -14,13 +14,10 @@ rle :: String -> String
 rle = fromCharAndRunLength . toCharAndRunLength
 
 fromCharAndRunLength :: [(Char, Int)] -> String
-fromCharAndRunLength = cat . rls2strs
+fromCharAndRunLength = concat . rls2strs
 
 rls2strs :: [(Char, Int)] -> [String]
 rls2strs = undefined
-
-cat :: [String] -> String
-cat = undefined
 
 toCharAndRunLength :: String -> [(Char, Int)]
 toCharAndRunLength = undefined
