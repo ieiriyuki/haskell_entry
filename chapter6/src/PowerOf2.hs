@@ -1,5 +1,7 @@
 module PowerOf2 where
 
+newtype PowerOf2 = PowerOf2 Int deriving (Eq, Show)
+
 -- | 2の累乗に対し, それが2の何乗かを返す
 --   それ以外の時はエラーになる
 --
@@ -13,8 +15,8 @@ module PowerOf2 where
 -- 2
 -- >>> exponentPowerOf2 1024
 -- 10
-exponentPowerOf2 :: Int -> Int
-exponentPowerOf2 = expof2 0 where
+exponentPowerOf2 :: PowerOf2 -> Int
+exponentPowerOf2 (PowerOf2 n) = expof2 0 n where
     expof2 :: Int -> Int -> Int
     expof2 r n
         | n == 1         = r
