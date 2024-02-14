@@ -36,3 +36,7 @@ stack build --resolver ghc-9.6.3
   - 安全を破らせないような設計ができる
 - 並行並列処理に強い
   - 純粋である
+
+## Stack Usage
+
+https://docs.haskellstack.org/en/stable/

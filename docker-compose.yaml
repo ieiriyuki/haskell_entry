@@ -1,4 +1,3 @@
-version: "3.9"
 services:
   app:
     image: myhaskell
@@ -8,6 +7,7 @@ services:
       - ./chapter1:/app/chapter1
       - ./chapter4:/app/chapter4
       - ./chapter5:/app/chapter5
+      - ./chapter6:/app/chapter6
     stdin_open: true
     tty: true
     command: bash

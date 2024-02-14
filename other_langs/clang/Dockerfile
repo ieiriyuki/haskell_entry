@@ -11,4 +11,8 @@ RUN g++ -o tarai tarai.cpp -lm -O2 -Wall
 # chapter 5
 RUN g++ -o toint toint.cpp -lm -O2 -Wall
 
+# chapter 6
+# RUN g++ -std=c++0x powerof2.cpp sample.cpp -o sample
+# fail
+
 ENTRYPOINT [ "./parallel" ]
